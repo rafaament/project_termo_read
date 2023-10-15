@@ -53,6 +53,7 @@ static int addr = 0x27;
 class LCDI2C {
 public:
     LCDI2C(i2c_inst_t *i2c, uint sda, uint scl);
+    void init();
     void toggle_enable(uint8_t val);
     void set_cursor(int line, int position);
     void write_char(char val);
@@ -60,6 +61,8 @@ public:
     void clear(void);
 private:
     i2c_inst_t *i2c_port;
+    uint sda_pin;
+    uint scl_pin;
     void send_byte(uint8_t val, int mode);
     void i2c_write_byte(uint8_t val);
 };

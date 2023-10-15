@@ -49,13 +49,19 @@ void LCDI2C::write_string(const char *s) {
 }
 
 LCDI2C::LCDI2C(i2c_inst_t *i2c, uint sda, uint scl)
-{
+{   
     i2c_port = i2c;
+    sda_pin = sda;
+    scl_pin = scl;
+}
+
+void LCDI2C::init()
+{
     i2c_init(i2c_port, 100 * 1000);
-    gpio_set_function(sda, GPIO_FUNC_I2C);
-    gpio_set_function(scl, GPIO_FUNC_I2C);
-    gpio_pull_up(sda);
-    gpio_pull_up(scl);
+    gpio_set_function(sda_pin, GPIO_FUNC_I2C);
+    gpio_set_function(scl_pin, GPIO_FUNC_I2C);
+    gpio_pull_up(sda_pin);
+    gpio_pull_up(scl_pin);
 
     send_byte(0x03, LCD_COMMAND);
     send_byte(0x03, LCD_COMMAND);

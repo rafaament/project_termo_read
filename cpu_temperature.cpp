@@ -1,7 +1,7 @@
 #include "cpu_temperature.h"
 
 
-void CPUTemperature::init_reading()
+void CPUTemperature::init()
 {
     adc_init();
     adc_set_temp_sensor_enabled(true);

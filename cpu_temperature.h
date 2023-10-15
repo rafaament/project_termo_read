@@ -8,7 +8,7 @@
 class CPUTemperature
 {
 public:
-    static void init_reading();
+    static void init();
     static float read_celsius();
     static float read_fahrenheit();
 private:
